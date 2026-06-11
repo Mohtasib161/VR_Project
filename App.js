@@ -1,20 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { registerRootComponent } from 'expo';
+import { ExpoRoot } from 'expo-router';
 
+// App serves as the custom entry point of the application.
+// We import and render ExpoRoot, pointing it to our src/app directory context.
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  // Define the context for the file-based routes in our src/app directory
+  const ctx = require.context('./src/app');
+
+  return <ExpoRoot context={ctx} />;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// Register App as the root component of the Expo project
+registerRootComponent(App);

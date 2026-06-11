@@ -2,23 +2,63 @@
   "expo": {
     "name": "leonative-app",
     "slug": "leonative-app",
+    "scheme": "leonative-app",
+    "newArchEnabled": true,
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yourcompany.arcardemo",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app requires access to the camera for augmented reality experiences",
+        "NSMicrophoneUsageDescription": "This app requires access to the microphone for AR experiences",
+        "NSPhotoLibraryUsageDescription": "This app requires access to your photos to save AR captures",
+        "NSPhotoLibraryAddUsageDescription": "This app requires permission to save photos of your AR experiences"
+      }
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
-        "monochromeImage": "./assets/android-icon-monochrome.png"
-      }
+        "monochromeImage": "./assets/android-icon-monochrome.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.yourcompany.arcardemo",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.READ_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "@reactvision/react-viro",
+        {
+          "android": {
+            "xRMode": "AR"
+          },
+          "ios": {
+            "cameraUsagePermission": "$(PRODUCT_NAME) uses your camera for augmented reality experiences.",
+            "microphoneUsagePermission": "$(PRODUCT_NAME) uses your microphone for AR experiences.",
+            "photosPermission": "$(PRODUCT_NAME) needs access to your photos to save AR captures.",
+            "savephotosPermission": "$(PRODUCT_NAME) needs permission to save photos from your AR experiences."
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "e58a4da5-8580-4ac4-9c2f-d2cc4336cb25"
+      }
     }
   }
 }
